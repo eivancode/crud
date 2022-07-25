@@ -1,2 +1,2 @@
 <?php
-$conexion = mysqli_connect('localhost', 'root', '', 'album');
+$conexion = mysqli_connect('localhost', 'root', 'admin', 'album');
