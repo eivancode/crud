@@ -1,7 +1,25 @@
 <?php require_once 'views/layout/cabecera.php'; ?>
+<!--SEARCH-->
 
-
-<div class="container">
+<div class="container"> 
+    <div class="search">
+    <div class="row">
+       <h5>Fitlros de búsqueda</h4>
+        <div class="col-md-2">
+            <input type="text" id="sid" placeholder="Id" data-index="2">
+        </div>
+        <div class="col-md-2">
+            <input type="text" id="sname" placeholder="Nombre">
+        </div>
+        <div class="col-md-2">
+            <input type="text" id="sdescrip" placeholder="Descripción">
+        </div>
+        <div class="col-md-7">
+            <button class="btn btn-success" style="float: right; margin: 5px">Buscar</button>
+            <button class="btn btn-danger" style="float: right; margin: 5px">Limpiar</button>
+        </div>
+    </div>
+    </div>
     <div class="row">
         <div class="col-md-5">
             <form method="POST" enctype="multipart/form-data" id="task-form">
@@ -35,11 +53,6 @@
     </div>
 </div>
 <div class="container">
-    <!-- Button trigger modal 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button> -->
-
     <!-- Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
