@@ -2,6 +2,7 @@
 $(document).ready(function () {
     let edit = false;
     let dataTable = $('#table').DataTable({
+        "searching": false,
         "ajax": {
             "url": "list.php",
             "dataSrc": ""
@@ -25,9 +26,10 @@ $(document).ready(function () {
                 "next": "Siguiente",
                 "previous": "Anterior"
             }
-        }
+        },
     });
 
+   
     /*AÑADIR REGISTRO*/
     $('#task-form').submit(function (e) {
         const postData = {
@@ -40,7 +42,7 @@ $(document).ready(function () {
         console.log(postData)
         $.post(url, postData, function (response) {
             if(($('#name').val() == '') || ($('#description').val() == '')){
-            swal("¡FALTAN CAMPOS POR RELLENAR!", {
+            swal("¡FALTAN CAMPOS POR COMPLETAR!", {
                 icon: "error",
             });
         }else{
