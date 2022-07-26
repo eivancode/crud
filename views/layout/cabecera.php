@@ -27,7 +27,7 @@ if (isset($_SESSION['usuario']) != "ivan") {
 <body>
     <nav class="navbar navbar-expand-lg bg-black" style="margin-bottom: 20px;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">TaskApp</a>
+            <a class="navbar-brand" style="color: white;" href="index.php">TaskApp</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" style="color: white;" href="index.php">Inicio</a>
@@ -39,9 +39,6 @@ if (isset($_SESSION['usuario']) != "ivan") {
                     <a class="nav-link" style="color: white;" href="cerrar.php">Cerrar</a>
                 </li>
             </ul>
-            <!-- <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" id="search" name="search"placeholder="Buscar proyecto">
-            </form> -->
         </div>
         </div>
     </nav>
