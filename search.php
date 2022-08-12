@@ -1,19 +1,25 @@
 <?php
 include_once 'model/conexion.php';
-$search = $_POST['search'];
-if(!empty($search)){
-    $query = "SELECT * FROM proyectos WHERE nombre LIKE '$search%'";
+
+//$id = $_POST['searchId'];
+$nombre = $_POST['name'];
+//$descripcion = $_POST['description'];
+
+if (!empty($id)) {
+    $query = "SELECT * FROM proyectos WHERE nombre LIKE '$nombre'";
     $result = mysqli_query($conexion, $query);
-    if(!$result){
-        die('Query Error'.mysqli_error($conexion));
+    if (!$result) {
+        die('Query Error' . mysqli_error($conexion));
     }
     $json = array();
-    while($row = mysqli_fetch_array($result)){
+    while ($row = mysqli_fetch_array($result)) {
         $json[] = array(
-            'nombre' => $row['nombre']
+            'id' => $row['id'],
+            'name' => $row['nombre'],
+            'image' => $row['imagen'],
+            'description' => $row['descripcion']
         );
     }
     $jsonstring = json_encode($json);
     echo $jsonstring;
 }
-?>

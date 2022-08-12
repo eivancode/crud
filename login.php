@@ -2,12 +2,12 @@
 
 session_start();
 
-if($_POST){
+if ($_POST) {
 
-    if(($_POST['usuario'] == "ivan") && ($_POST['contrasenia'] == "123")){
+    if (($_POST['usuario'] == "ivan@ivan.com") && ($_POST['contrasenia'] == "12345678")) {
         $_SESSION['usuario'] = "ivan";
         header("location: index.php");
-    } else{ 
+    } else {
 
         echo "<script> alert('Usuario o contraseña incorrectos'); </script>";
     }
@@ -36,7 +36,7 @@ if($_POST){
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                <br/>
+                <br />
                 <div class="card">
                     <div class="card-header">
                         Iniciar Sesión
@@ -49,12 +49,12 @@ if($_POST){
                             <br />
                             Contraseña: <input class="form-control" type="password" name="contrasenia" id="">
                             <br />
-                            <button class="btn btn-success" type="submit"> Entrar al portafolio </button>
+                            <button class="btn btn-success" type="submit"> Entrar </button>
 
                         </form>
 
                     </div>
-                
+
                 </div>
 
             </div>

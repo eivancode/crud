@@ -1,14 +1,14 @@
 <?php
 
 session_start();
-if (isset($_SESSION['usuario']) != "ivan") {
+if (isset($_SESSION['usuario']) != "ivan@ivan.com") {
     header("location:login.php");
 }
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -27,13 +27,10 @@ if (isset($_SESSION['usuario']) != "ivan") {
 <body>
     <nav class="navbar navbar-expand-lg bg-black" style="margin-bottom: 20px;">
         <div class="container-fluid">
-            <a class="navbar-brand" style="color: white;" href="index.php">TaskApp</a>
+            <a class="navbar-brand" style="color: white;">App</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" style="color: white;" href="index.php">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: white;" href="portafolio.php">Portafolio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color: white;" href="cerrar.php">Cerrar</a>
