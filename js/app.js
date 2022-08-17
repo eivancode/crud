@@ -11,10 +11,10 @@ $(document).ready(function () {
             { "data": "name" },
             {
                 "data": "image",
-                /*"render": function (data, type, row, meta) {
-                    return '<center><img src="images/1660153034cats.png" style="width:100px"/></center>';
-
-                }*/
+                "render": function (data, type, row) {
+                    return '<img src="images/'+row.image+'" class="showList" style="width:150px; cursor:pointer"/>';
+                    //return '<img src="images/1660590120logo.jpeg"/>';
+                }
             },
             { "data": "description" },
             { "defaultContent": "<div class='gap-1 d-md-flex justify-content-center'><button class='btn btn-success btn-sm' id ='btnEdit'><span class='material-icons'>edit</span></button > <button class='btn btn-danger btn-sm' id='btnDelete'><span class='material-icons'>delete</span></button></div>" }
@@ -47,10 +47,9 @@ $(document).ready(function () {
             type: 'POST',
             data: { name },
             success: function () {
-                console.log('ok')               
+                console.log('ok')
                 dataTable.clear().draw();
             }
-            
         })
     });
 
@@ -64,7 +63,7 @@ $(document).ready(function () {
     })
 
     /* AÑADIR REGISTRO */
-    $("#task-form").on("submit", function (e) {
+    $('#task-form').on('submit', function (e) {
         let action = edit === false ? 'add.php' : 'update.php';
         let formData = new FormData(document.getElementById('task-form'));
 
@@ -86,18 +85,16 @@ $(document).ready(function () {
                     swal("¡REGISTRO AGREGADO!", {
                         icon: "success",
                     });
-                    edit = false; 
+                    edit = false;
                     $('#task-form').trigger('reset'); // LIMPIA FORMULARIO
                 }
                 dataTable.ajax.reload();
-                $preview = document.querySelector("#preview");
-                $preview.src = "";
             });
         e.preventDefault();
 
     });
 
-    /*---------------------------------------- PREVIEW IMAGEN-----------------------------------*/
+    /*---------------------------------------- PREVIEW IMAGEN-----------------------------------
     const $image = document.querySelector("#image"),
     $preview = document.querySelector("#preview");
 
@@ -117,22 +114,21 @@ $(document).ready(function () {
         // Y a la fuente de la imagen le ponemos el objectURL
         $preview.src = objectURL;
     });
-    /*------------------------------------------------------------------------------------------*/
-
-
+    ------------------------------------------------------------------------------------------*/
+    $('#showList').on('click', function () {
+        $('#task-form').hide();
+    })
 
     /* RELLENA DATOS EN FORMULARIO */
     $(document).on('click', '#btnEdit', function () {
         let id = parseInt($(this).closest('tr').find('td:eq(0)').text());
-        //console.log(id)
-        //$('#editModal').modal('show');
         $.post('edit.php', { id }, function (response) {
             const task = JSON.parse(response);
             console.log(task);
             $('#id').val(id);
-            $('#name').val(task.nombre);
-            //$('#image').val(task.imagen);
-            $('#description').val(task.descripcion);
+            $('#name').val(task.name);
+            $('#file').val(task.image);
+            $('#description').val(task.description);
             edit = true;
         });
     });
