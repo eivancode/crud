@@ -27,15 +27,19 @@
                         <input type="hidden" name="id" id="id">
                         <input type="text" name="name" id="name" placeholder="Proyecto" class="form-control" style="margin-bottom: 5px;">
                         <input type="file" style="margin-bottom: 5px;" name="image" id="image">
-                        <img class="img-thumbnail" id="preview">
                         <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Descripción"></textarea>
-                        <input class="btn btn-success" type="submit" style="float: right; margin-top: 5px" value="Enviar proyecto">
+                        <input class="btn btn-success" type="submit" id="send" style="float: right; margin-top: 5px" value="Enviar proyecto">
+                        <input hidden class="btn btn-success" type="submit" id="update" style="float: right; margin-top: 5px" value="Actualizar proyecto">
+
                     </div>
                 </form>
+                <div id="">
+                    <button class="btn btn-info showList">Ver registros</button>
+                </div>
             </div>
 
             <div class="col-md-7">
-                <table class="table table-striped" style="width: 100%;" id="table">
+                <table class="table table-striped" id="table">
                     <thead>
                         <tr>
                             <td>Id</td>
@@ -50,27 +54,4 @@
             </div>
         </div>
 </div>
-<div class="container">
-    <!-- Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar registro</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="text" name="name" id="editName" placeholder="Proyecto" class="form-control" style="margin-bottom: 5px;">
-                    <input type="file" style="margin-bottom: 5px;" name="image" id="image">
-                    <textarea name="description" id="editDescription" cols="30" rows="10" class="form-control" placeholder="Descripción"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Actualizar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <?php include("views/layout/pie.php"); ?>

@@ -8,14 +8,13 @@ $resultado = mysqli_query($conexion, $query);
 if (!$resultado) {
     die('Error' . mysqli_error($conexion));
 }
-$json = array();
+//$json = array();
 while ($row = mysqli_fetch_array($resultado)) {
     $json[] = array(
         'id' => $row['id'],
-        'nombre' => $row['nombre'],
-        'imagen' => $row['imagen'],
-        'descripcion' => $row['descripcion']
-        
+        'name' => $row['nombre'],
+        'image' => $row['imagen'],
+        'description' => $row['descripcion']
     );
 }
 $jsonString = json_encode($json[0]);
