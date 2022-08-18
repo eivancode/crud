@@ -12,8 +12,7 @@ $(document).ready(function () {
             {
                 "data": "image",
                 "render": function (data, type, row) {
-                    return '<img src="images/'+row.image+'" class="showList" style="width:150px; cursor:pointer"/>';
-                    //return '<img src="images/1660590120logo.jpeg"/>';
+                    return '<img src="images/' + row.image + '" class="showList" style="width:150px; height:100px; cursor:pointer"/>';
                 }
             },
             { "data": "description" },
@@ -63,12 +62,12 @@ $(document).ready(function () {
     })
 
     /* AÑADIR REGISTRO */
-    $('#task-form').on('submit', function (e) {
-        let action = edit === false ? 'add.php' : 'update.php';
+    $('#send').on('click', function (e) {
+        //let action = edit === false ? 'add.php' : 'update.php';
         let formData = new FormData(document.getElementById('task-form'));
 
         $.ajax({
-            url: action,
+            url: 'add.php',
             type: "POST",
             dataType: "HTML",
             data: formData,
@@ -77,7 +76,7 @@ $(document).ready(function () {
             processData: false
         })
             .done(function () {
-                if (($('#name').val() == '') || $('#image').val() == '' || ($('#description').val() == '')) {
+                if (($('#name').val() == '') || ($('#description').val() == '') || ($('#image').val() == '')) {
                     swal("¡FALTAN CAMPOS POR COMPLETAR!", {
                         icon: "error",
                     });
@@ -85,7 +84,7 @@ $(document).ready(function () {
                     swal("¡REGISTRO AGREGADO!", {
                         icon: "success",
                     });
-                    edit = false;
+                    //edit = false;
                     $('#task-form').trigger('reset'); // LIMPIA FORMULARIO
                 }
                 dataTable.ajax.reload();
@@ -94,33 +93,16 @@ $(document).ready(function () {
 
     });
 
-    /*---------------------------------------- PREVIEW IMAGEN-----------------------------------
-    const $image = document.querySelector("#image"),
-    $preview = document.querySelector("#preview");
-
-    // Escuchar cuando cambie
-    $image.addEventListener("change", () => {
-        // Los archivos seleccionados, pueden ser muchos o uno
-        const archivos = $image.files;
-        // Si no hay archivos salimos de la función y quitamos la imagen
-        if (!archivos || !archivos.length) {
-            $preview.src = "";
-            return;
-        }
-        // Ahora tomamos el primer archivo, el cual vamos a previsualizar
-        //const primerArchivo = archivos[0];
-        // Lo convertimos a un objeto de tipo objectURL
-        const objectURL = URL.createObjectURL(archivos[0]);
-        // Y a la fuente de la imagen le ponemos el objectURL
-        $preview.src = objectURL;
-    });
-    ------------------------------------------------------------------------------------------*/
-    $('#showList').on('click', function () {
+    /* AMPLIAR IMAGEN */
+    $('.showList').on('click', function () {
         $('#task-form').hide();
     })
 
     /* RELLENA DATOS EN FORMULARIO */
     $(document).on('click', '#btnEdit', function () {
+        $('#send').hide();
+        $('#update').removeAttr('hidden');
+
         let id = parseInt($(this).closest('tr').find('td:eq(0)').text());
         $.post('edit.php', { id }, function (response) {
             const task = JSON.parse(response);
@@ -133,6 +115,38 @@ $(document).ready(function () {
         });
     });
 
+    /* ACTUALIZAR REGISTRO */
+    $('#update').on('click', function (e) {
+        let formData = new FormData(document.getElementById('task-form'));
+    
+        $.ajax({
+            url: 'update.php',
+            type: "POST",
+            dataType: "HTML",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false
+        })
+            .done(function () {
+                if (($('#name').val() == '') || ($('#description').val() == '')) {
+                    swal("¡FALTAN CAMPOS POR COMPLETAR!", {
+                        icon: "error",
+                    });
+                } else {
+                    swal("¡REGISTRO AGREGADO!", {
+                        icon: "success",
+                    });
+                    //edit = false;
+                    $('#send').show();
+                    $('#update').attr('hidden', 'hidden');
+                    $('#task-form').trigger('reset'); // LIMPIA FORMULARIO
+                }
+                dataTable.ajax.reload();
+            });
+        e.preventDefault();
+
+    });
     /* ELIMINAR REGISTROS */
     $(document).on('click', '#btnDelete', function () {
         swal({
